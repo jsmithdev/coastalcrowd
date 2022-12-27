@@ -1,0 +1,32 @@
+<template>
+
+    <div class="container">
+
+        <div class="bar">
+            <div 
+                class="menu" 
+                lwc:dom="manual"
+                onclick={toggleDrawer}></div>
+
+            <div class="title">{appName}</div>
+
+            <div class="right" onclick={toastExample}>
+                😺
+            </div>
+        </div>
+        
+        <div class="content">
+    
+            <div 
+                class="drawer"
+                header={menuHeader}
+                onnavigate={closeDrawer}
+                lwc:dom="manual">
+            </div>
+    
+            <div class="view">
+                <slot name="content"></slot>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,23 @@
+<template>
+	<div class={toastClasses} title={title}>
+		
+		<div class={contentClasses}>
+
+			<div class="message">
+				{message}
+			</div>
+
+			<template if:false={static}>
+				<div class="center" onclick={close}>
+					<div class="centered">
+						X
+					</div>
+				</div>
+			</template>
+		</div>
+
+		<template if:true={static}>
+			<br />
+		</template>
+	</div>
+</template>

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* Global vars */
+:root {
+  --color-primary: #B4F8C8;
+  --color-secondary: #FBE7C6;
+  --color-tertiary: #A0E7E5;
+  --color-quaternary: #FFAEBC;
+
+  --color-dark: #423939;
+	/* for drawer icon */
+	--icon-color: var(--color-primary);
+}
+
+
+html {
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	overflow: hidden;
+	margin: 0px;
+}
+
+a {
+	color: var(--color-quaternary);
+}

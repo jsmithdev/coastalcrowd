@@ -1,0 +1,29 @@
+<template>
+    <div class="drawer-container">
+        
+        <div class="header">
+            {header}
+        </div>
+        
+        <div class="items">
+            <template for:each={views} for:item="item">
+                <div 
+                    class="item" 
+                    onclick={navigate}
+                    data-name={item.name}
+                    key={item.key}>
+                    {item.label}
+                </div>
+            </template>
+        </div>
+        
+        <div class="footer">
+            <template if:true={version}>
+                <div class="version-container">
+                    <p class="version">{version}</p>
+                </div>
+            </template>
+        </div>
+        
+    </div>
+</template>

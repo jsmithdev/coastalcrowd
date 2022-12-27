@@ -1,0 +1,66 @@
+{
+	"name": "lwc-app-layout",
+	"description": "An app layout for LWC",
+	"version": "1.0.5",
+	"author": "Jamie Smith (me@jsmith.dev)",
+	"engines": {
+		"node": "16.13.x",
+		"npm": "7.19.1",
+		"yarn": "1.9.4"
+	},
+	"repository": {
+		"type": "git"
+	},
+	"license": "UNLICENSED",
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"keywords": [
+		"lwc"
+	],
+	"lint-staged": {
+		"**/*.{css,html,js,json,md,ts,yaml,yml}": [
+			"prettier --write"
+		],
+		"./src/**/*.js": [
+			"eslint"
+		]
+	},
+	"devDependencies": {
+		"@lwc/eslint-plugin-lwc": "^1.2.1",
+		"@lwc/module-resolver": "^2.12.0",
+		"@salesforce-ux/design-system": "^2.15.8",
+		"@salesforce/eslint-config-lwc": "^3.3.0",
+		"@salesforce/eslint-plugin-lightning": "^1.0.0",
+		"copy-webpack-plugin": "^10.2.4",
+		"eslint": "^7.27.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-inclusive-language": "^2.1.1",
+		"html-webpack-plugin": "^5.5.0",
+		"husky": "^4.3.8",
+		"idb": "^7.0.1",
+		"lightning-base-components": "^1.14.6-alpha",
+		"lint-staged": "^10.5.4",
+		"lwc": "^2.12.0",
+		"lwc-webpack-plugin": "^3.0.0",
+		"prettier": "^2.3.0",
+		"webpack": "^5.71.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.8.0",
+		"webpack-merge": "^5.8.0",
+		"workbox-background-sync": "^6.5.2",
+		"workbox-cacheable-response": "^6.5.2",
+		"workbox-webpack-plugin": "^6.5.2"
+	},
+	"scripts": {
+		"start": "webpack serve --config webpack.dev.js",
+		"build": "webpack --mode=production",
+		"build:dev": "webpack",
+		"watch": "webpack serve",
+		"lint": "eslint ./src/**/*.js",
+		"prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
+		"prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\""
+	}
+}

@@ -1,0 +1,14 @@
+
+.card {
+	background-clip: padding-box;
+	color: var(--sds-c-card-text-color);
+	border-width: var(--sds-c-card-sizing-border, 1px);
+	border-radius: var(--sds-c-card-radius-border, 0.25rem);
+	box-shadow: var(--sds-c-card-shadow, 0 2px 2px 0 rgba(0, 0, 0, 0.1));
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+	padding: 1rem;
+	min-height: 4rem;
+	background-color: #EEE;
+    color: var(--color-dark);
+    margin: 1rem;
+}
