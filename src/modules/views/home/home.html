@@ -1,16 +1,101 @@
 <template>
-	<div class="container">
-	
-		<ui-card>
-			<div slot="content">
-				This is the home screen
-			</div>
-		</ui-card>
-		
-		<ui-card>
-			<div slot="content" class="center">
-				<img src="https://placehold.jp/150x150.png"></img>
-			</div>
-		</ui-card>
-	</div>
+  <div class="container">
+    <ui-card>
+      <div slot="header">Crowd sourced components for coasties 🌴</div>
+      <div slot="content">
+        This is a place to find and share components or solutions.
+        <br />
+        <br />
+        <i>Components</i> are small pieces of code that can be composed together
+        to build solutions by developers.
+        <br />
+        <br />
+        <i>Solutions</i> are larger pieces of code that can be deployed and used
+        by admins.
+      </div>
+
+      <div slot="footer">
+        <div style="text-align: center">🌊&#183;🏗️&#183;🌴</div>
+      </div>
+    </ui-card>
+
+    <ui-card>
+      <div slot="header">Components 🏗️</div>
+      <div slot="content">
+        These are composable components to be used by developers.
+        <br />
+        <br />
+        They are ready to be deployed but aren't exposed to App or Community
+        Builders.
+        <br />
+        <br />
+        These typically won't need to be customized, they provide APIs, but can
+        be customized if needed.
+      </div>
+
+      <div slot="footer">
+        <div style="text-align: center">🌊&#183;🏗️&#183;🌴</div>
+      </div>
+    </ui-card>
+
+    <ui-card>
+      <div slot="header">Solutions 🌴</div>
+      <div slot="content">
+        These are exposed to App or Community Builders for use by admins.
+        <br />
+        <br />
+        They are ready to be deployed, however, they may require some
+        configuration.
+        <br />
+        <br />
+        These typically will still be used as a starting point and customized
+        from there.
+      </div>
+
+      <div slot="footer">
+        <div style="text-align: center">🌊&#183;🏗️&#183;🌴</div>
+      </div>
+    </ui-card>
+
+    <ui-card>
+      <div slot="header">Contributing 🌊</div>
+      <div slot="content">
+        You can contribute to this site or to the projects themselves.
+
+        <br />
+        <br />
+
+        Feel free to open an issue on a project for:
+        <ul style="margin: 0.5rem">
+          <li>General questions</li>
+          <li>Suggestions for improvement</li>
+          <li>Add to the project (PRs welcome)</li>
+        </ul>
+
+        <br />
+
+        To contribute to this site, open an issue
+        <a href="https://github.com/jsmithdev/coastal-crowd/issues">here</a>
+        for:
+        <ul style="margin: 0.5rem">
+          <li>General questions about the site</li>
+          <li>Suggestions for improvement</li>
+          <li>Adding components or solutions to the site</li>
+        </ul>
+        <br />
+
+        All components and solutions need a few things:
+        <ul style="margin: 0.5rem">
+          <li>A readme for documentation</li>
+          <li>A screenshot of it in use</li>
+          <li>Ready to deploy w/ required tests</li>
+          <li>Github author and repository name</li>
+        </ul>
+      </div>
+
+      <div slot="footer">
+        <div style="text-align: center">🌊&#183;🏗️&#183;🌴</div>
+      </div>
+    </ui-card>
+  </div>
 </template>

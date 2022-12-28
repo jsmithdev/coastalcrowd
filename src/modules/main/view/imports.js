@@ -1,5 +1,8 @@
-import Home from "../../views/home/home";
-customElements.define('views-home', Home.CustomElementConstructor);
+import home from "../../views/home/home";
+customElements.define("views-home", home.CustomElementConstructor);
 
-import Settings from "../../views/settings/settings";
-customElements.define('views-settings', Settings.CustomElementConstructor);
+import components from "../../views/components/components";
+customElements.define("views-components", components.CustomElementConstructor);
+
+import solutions from "../../views/solutions/solutions";
+customElements.define("views-solutions", solutions.CustomElementConstructor);

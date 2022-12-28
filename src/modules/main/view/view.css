@@ -1,6 +1,5 @@
 .view-container {
-    max-width: 100%;
-    width: 100%;
-    height: -webkit-fill-available;
-    background-color: var(--color-tertiary);
+  max-width: 100%;
+  width: 100%;
+  height: -webkit-fill-available;
 }

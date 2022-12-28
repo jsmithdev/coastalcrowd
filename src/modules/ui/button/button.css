@@ -1,0 +1,65 @@
+button {
+  width: -webkit-fill-available;
+  height: 50px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  border: 1pt solid var(--color-mid);
+  background-image: #ffffff;
+  /* background-image: linear-gradient(to right, #84fab0 0%, var(--color-mid) 51%, var(--color-accent) 100%); */
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  z-index: 1;
+  outline: none;
+
+  flex: 1 1 auto;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+button:hover {
+  color: white;
+  background-image: linear-gradient(
+    to right,
+    #84fab0 0%,
+    var(--color-mid) 51%,
+    var(--color-accent) 100%
+  );
+  background-position: right center;
+}
+
+svg {
+  top: 0px;
+  left: 0px;
+  font-size: 30px;
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  fill: var(--color-mid);
+  transform: rotate(-90deg);
+  transition: fill 0.5s linear;
+  -webkit-tap-highlight-color: transparent;
+}
+button:hover svg {
+  fill: var(--color-accent);
+}
+
+button.success {
+  color: white;
+  background: var(--color-accent);
+  background-image: none;
+  border: var(--color-lightest);
+  /* 
+    background-image: linear-gradient(to right, #84fab0 0%, var(--color-accent) 51%, var(--color-lightest) 100%);
+    */
+}
+button.success svg {
+  fill: var(--color-lightest);
+}

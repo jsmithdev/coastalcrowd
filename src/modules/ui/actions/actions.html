@@ -1,0 +1,13 @@
+<template>
+  <div style="display: inline-block">
+    <ui-select options="{actions}" onchange="{handleSelect}"> </ui-select>
+    <br />
+    <ui-button
+      label="{action_label}"
+      onclick="{runAction}"
+      class-name="{buttonClass}"
+    ></ui-button>
+
+    <input style="display: none !important" type="hidden" />
+  </div>
+</template>

@@ -1,0 +1,97 @@
+<template>
+  <div class="container">
+    <div class="card">
+      <template if:true="{image}">
+        <div class="header">
+          <div class="image_container">
+            <ui-modal header="{name}" variant="large">
+              <span slot="trigger">
+                <img class="thumb" src="{image}" />
+              </span>
+
+              <span slot="content">
+                <img
+                  src="{image}"
+                  style="max-width: 100%; border-radius: 10px"
+                />
+              </span>
+            </ui-modal>
+          </div>
+        </div>
+      </template>
+
+      <div class="content">
+        <h2>{name}</h2>
+
+        <div class="description">{description}</div>
+      </div>
+      <div class="footer">
+        <slot name="footer">
+          <div class="details">
+            <ui-actions name="{name}" author="{author}"></ui-actions>
+
+            <br />
+            <br />
+
+            <span class="trigger_info">
+              <svg onclick="{toggle_show}" class="{show}" viewBox="0 0 24 24">
+                <path d="M7,10L12,15L17,10H7Z"></path>
+              </svg>
+            </span>
+
+            <template if:true="{show}">
+              <ui-lightndown url="{markdown}" baseurl="{url}">
+                <footer slot="footer" style="text-align: center">
+                  <span class="trigger_info">
+                    <svg
+                      onclick="{toggle_show}"
+                      class="{show}"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M7,10L12,15L17,10H7Z"></path>
+                    </svg>
+                  </span>
+                </footer>
+              </ui-lightndown>
+            </template>
+          </div>
+        </slot>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- <div class="details">
+
+            <ui-actions
+                name={name}
+                author={author}
+            ></ui-actions>
+
+            <br />
+            <br />
+
+            <span class="trigger_info">
+                <svg onclick={toggle_show} class={show} viewBox="0 0 24 24">
+                    <path d="M7,10L12,15L17,10H7Z"></path>
+                </svg>
+            </span>
+
+            <template if:true={show}>
+
+                <ui-lightndown 
+                    url={markdown} 
+                    baseurl={url}>
+
+                    <footer slot="footer" style="text-align: center;">
+                        <span class="trigger_info">
+                            <svg onclick={toggle_show} class={show} viewBox="0 0 24 24">
+                                <path d="M7,10L12,15L17,10H7Z"></path>
+                            </svg>
+                        </span>
+                    </footer>
+                </ui-lightndown>
+
+                
+            </template>
+        </div> -->

@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true
+  },
+  "plugins": ["@lwc/eslint-plugin-lwc", "inclusive-language"],
+  "extends": ["@salesforce/eslint-config-lwc/recommended"],
+  "rules": {
+    "@lwc/lwc/no-async-operation": "off",
+    "@lwc/lwc/no-inner-html": "warn",
+    "@lwc/lwc/no-document-query": "warn",
+    "inclusive-language/use-inclusive-words": "off"
+  },
+  "ignorePatterns": [
+    "highlight.js",
+    "highlightJS.js",
+    "highlightMD.js",
+    "highlightXML.js",
+    "marked.js"
+  ]
+}

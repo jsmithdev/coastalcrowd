@@ -1,32 +1,28 @@
 <template>
+  <div class="container">
+    <div class="bar">
+      <div class="menu" lwc:dom="manual" onclick="{toggleDrawer}"></div>
 
-    <div class="container">
+      <div class="title">
+        <span class="appname">{appName}</span>
+      </div>
 
-        <div class="bar">
-            <div 
-                class="menu" 
-                lwc:dom="manual"
-                onclick={toggleDrawer}></div>
-
-            <div class="title">{appName}</div>
-
-            <div class="right" onclick={toastExample}>
-                😺
-            </div>
-        </div>
-        
-        <div class="content">
-    
-            <div 
-                class="drawer"
-                header={menuHeader}
-                onnavigate={closeDrawer}
-                lwc:dom="manual">
-            </div>
-    
-            <div class="view">
-                <slot name="content"></slot>
-            </div>
-        </div>
+      <div class="right">
+        <!-- <img class="appicon" src="res/icon.png" /> -->
+      </div>
     </div>
+
+    <div class="content">
+      <div
+        class="drawer"
+        header="{menuHeader}"
+        onnavigate="{closeDrawer}"
+        lwc:dom="manual"
+      ></div>
+
+      <div class="view">
+        <slot name="content"></slot>
+      </div>
+    </div>
+  </div>
 </template>

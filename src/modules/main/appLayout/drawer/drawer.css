@@ -1,6 +1,6 @@
 .drawer-container {
-	user-select: none;
-	color: var(--color-dark);
+  user-select: none;
+  color: var(--color-dark);
   height: 100%;
 
   display: grid;
@@ -25,22 +25,25 @@ div.item {
   cursor: pointer;
   user-select: none;
 }
+
 div.item:hover {
-	color: var(--color-quaternary);
+  color: var(--color-quaternary);
 }
+
 div.item.active {
-	color: var(--color-quaternary);
+  text-decoration: underline;
+  text-underline-position: under;
 }
 
 /* .version-container {
 	position: relative;
 } */
 .version {
-	text-align: center;
+  text-align: center;
 }
 
 @media only screen and (min-width: 1200px) {
   .item {
     padding: 8px;
-  }  
+  }
 }
