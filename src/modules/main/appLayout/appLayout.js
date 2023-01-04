@@ -1,10 +1,6 @@
 import { api, LightningElement } from "lwc";
 
-import MenuIcon from "./menuIcon/menuIcon";
-import Drawer from "./drawer/drawer";
-
-customElements.define("menu-icon", MenuIcon.CustomElementConstructor);
-customElements.define("menu-drawer", Drawer.CustomElementConstructor);
+import './imports.js'
 
 export default class AppLayout extends LightningElement {
   @api appName = "App Layout";
@@ -12,7 +8,7 @@ export default class AppLayout extends LightningElement {
   @api sideItems = [];
 
   get isLarge() {
-    return window.innerWidth > 1200;
+    return window.innerWidth > 800;
   }
 
   get content() {
@@ -29,6 +25,8 @@ export default class AppLayout extends LightningElement {
     this.template.querySelector(".drawer").appendChild(drawer);
 
     drawer.items = this.sideItems;
+
+    this.resize()
   }
 
   toggleDrawer() {
@@ -46,7 +44,10 @@ export default class AppLayout extends LightningElement {
   }
 
   closeDrawer() {
-    if (!this.isLarge) this.template.querySelector("menu-icon").toggle(false);
+    // ignore if large
+    if (this.isLarge) return;
+    // toggle icon and drawer
+    this.template.querySelector("menu-icon").toggle(false);
     this.toggleDrawer();
   }
 
@@ -66,31 +67,18 @@ export default class AppLayout extends LightningElement {
     if (this.isLarge) {
       this.isDrawer = true;
       this.content.classList.remove("close");
-      this.content.classList.add("open");
-      this.template.querySelector("menu-icon").toggle(false);
+      this.content.classList.add("large");
+      /* this.content.classList.add("open"); */
+      this.template.querySelector("menu-icon").hide(true);
     } else {
       this.isDrawer = false;
+      this.content.classList.remove("large");
       this.content.classList.remove("open");
       this.content.classList.add("close");
+      this.template.querySelector("menu-icon").hide(false);
       this.template.querySelector("menu-icon").toggle(false);
     }
     this.wasLarge = this.isLarge;
-  }
-
-  toastExample() {
-    const vars = ["success", "info", "warning", "error"];
-    const variant = vars[Math.floor(Math.random() * vars.length)];
-
-    this.dispatchEvent(
-      new CustomEvent("toast", {
-        bubbles: true,
-        composed: true,
-        detail: {
-          variant,
-          message: "meow... prrrrr...",
-        },
-      })
-    );
   }
 
   handleSize() {

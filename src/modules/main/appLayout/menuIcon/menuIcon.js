@@ -16,4 +16,16 @@ export default class MenuIcon extends LightningElement {
         }
         this.setAttribute('aria-expanded', this.classList.contains('opened'))
     }
+
+    @api
+    hide(bool){
+        console.log('hide', bool);
+        if(bool === true){
+            this.template.querySelector('.menu-container').classList.add('hide');
+        }
+        else if (bool === false){
+            this.template.querySelector('.menu-container').classList.remove('hide');
+        }
+        this.setAttribute('aria-expanded', this.classList.contains('opened'))
+    }
 }
