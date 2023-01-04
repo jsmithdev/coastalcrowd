@@ -1,12 +1,12 @@
 <template>
   <label for="standard-select">{label}</label>
   <div class="select">
-    <select onchange="{change}">
-      <template for:each="{data}" for:item="option">
+    <select onchange={change}>
+      <template for:each={data} for:item="option">
         <option
-          key="{option.key}"
-          value="{option.value}"
-          label="{option.label}"
+          key={option.key}
+          value={option.value}
+          label={option.label}
         >
           {option.label}
         </option>

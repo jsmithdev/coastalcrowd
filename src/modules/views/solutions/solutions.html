@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="content">
-      <template for:each="{items}" for:item="item">
-        <ui-img-card key="{item.title}" item="{item}"></ui-img-card>
+      <template for:each={items} for:item="item">
+        <ui-img-card key={item.title} item={item}></ui-img-card>
       </template>
       <!-- 
 				onpreview={previewImage}

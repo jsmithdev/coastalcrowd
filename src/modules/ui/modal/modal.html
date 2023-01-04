@@ -1,21 +1,21 @@
 <template>
-  <div class="trigger" onclick="{show}">
+  <div class="trigger" onclick={show}>
     <slot name="trigger">
       <a>{trigger}</a>
     </slot>
   </div>
 
-  <template if:true="{loading}"> Loading... </template>
+  <template if:true={loading}> Loading... </template>
 
-  <template if:false="{loading}">
-    <template if:true="{active}">
+  <template if:false={loading}>
+    <template if:true={active}>
       <section
         role="dialog"
         tabindex="-1"
         aria-labelledby="modal-heading-01"
         aria-modal="true"
         aria-describedby="modal-content-id-1"
-        class="{modalClassList}"
+        class={modalClassList}
       >
         <div class="modal__container">
           <div class="modal__header">
@@ -24,7 +24,7 @@
               title="Close"
               icon-name="utility:close"
               icon-class="slds-button_icon-inverse"
-              onclick="{close}"
+              onclick={close}
             >
               <svg style="width: 42px; height: 42px" viewBox="0 0 24 24">
                 <path
@@ -52,7 +52,7 @@
               <slot name="footer-center"></slot>
             </div>
 
-            <ui-button label="Close" onclick="{close}"></ui-button>
+            <ui-button label="Close" onclick={close}></ui-button>
 
             <slot name="footer"></slot>
           </footer>

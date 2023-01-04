@@ -7,11 +7,6 @@
     "type": "git"
   },
   "license": "UNLICENSED",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "keywords": [
     "lwc"
   ],

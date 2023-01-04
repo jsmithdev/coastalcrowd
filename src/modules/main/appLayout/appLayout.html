@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="bar">
-      <div class="menu" lwc:dom="manual" onclick="{toggleDrawer}"></div>
+      <div class="menu" lwc:dom="manual" onclick={toggleDrawer}></div>
 
       <div class="title">
         <span class="appname">{appName}</span>
@@ -15,8 +15,8 @@
     <div class="content">
       <div
         class="drawer"
-        header="{menuHeader}"
-        onnavigate="{closeDrawer}"
+        header={menuHeader}
+        onnavigate={closeDrawer}
         lwc:dom="manual"
       ></div>
 
