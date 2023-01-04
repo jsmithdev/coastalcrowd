@@ -1,7 +1,7 @@
 {
   "name": "coastal-crowd",
-  "theme_color": "#B4F8C8",
-  "background_color": "#B4F8C8",
+  "theme_color": "#1c75bc",
+  "background_color": "#92e1ff",
   "display": "standalone",
   "short_name": "coastal-crowd",
   "orientation": "portrait",
