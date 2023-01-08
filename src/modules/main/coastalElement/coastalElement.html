@@ -1,0 +1,17 @@
+<template>
+  <div class="app">
+    <ui-toast></ui-toast>
+
+    <main-app-layout
+      app-name="🌊 Coastal Crowd"
+      menu-header="Menu"
+      onnavigate={navigate}
+      ontoast={toast}
+      side-items={things}
+    >
+      <span slot="content">
+        <main-view view={currentView}></main-view>
+      </span>
+    </main-app-layout>
+  </div>
+</template>

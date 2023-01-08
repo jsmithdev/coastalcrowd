@@ -4,7 +4,7 @@ button {
   cursor: pointer;
   position: relative;
   border-radius: 5px;
-  border: 1pt solid var(--color-mid);
+  border: 1pt solid var(--color-tertiary);
   background-image: #ffffff;
   /* background-image: linear-gradient(to right, #84fab0 0%, var(--color-mid) 51%, var(--color-accent) 100%); */
   appearance: none;
@@ -27,9 +27,9 @@ button:hover {
   color: white;
   background-image: linear-gradient(
     to right,
-    #84fab0 0%,
-    var(--color-mid) 51%,
-    var(--color-accent) 100%
+    var(--color-primary) 0%,
+    var(--color-tertiary) 51%,
+    var(--color-primary) 100%
   );
   background-position: right center;
 }
@@ -42,24 +42,24 @@ svg {
   width: 45px;
   height: 45px;
   cursor: pointer;
-  fill: var(--color-mid);
+  fill: var(--color-tertiary);
   transform: rotate(-90deg);
   transition: fill 0.5s linear;
   -webkit-tap-highlight-color: transparent;
 }
 button:hover svg {
-  fill: var(--color-accent);
+  fill: var(--color-primary);
 }
 
 button.success {
   color: white;
-  background: var(--color-accent);
+  background: var(--color-primary);
   background-image: none;
-  border: var(--color-lightest);
+  border: var(--color-tertiary);
   /* 
     background-image: linear-gradient(to right, #84fab0 0%, var(--color-accent) 51%, var(--color-lightest) 100%);
     */
 }
 button.success svg {
-  fill: var(--color-lightest);
+  fill: var(--color-tertiary);
 }

@@ -32,7 +32,7 @@ select::-ms-expand {
   position: relative;
   min-width: 15ch;
   max-width: 30ch;
-  border: 1px solid var(--color-mid);
+  border: 1px solid var(--color-tertiary);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
   font-size: 1.25rem;
@@ -57,7 +57,7 @@ select::-ms-expand {
   justify-self: end;
   width: 0.8em;
   height: 0.5em;
-  background-color: var(--color-mid); /* arrow */
+  background-color: var(--color-tertiary); /* arrow */
   -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
@@ -68,7 +68,7 @@ select:focus + .focus {
   left: -1px;
   right: -1px;
   bottom: -1px;
-  border: 2px solid var(--color-accent);
+  border: 2px solid var(--color-primary);
   border-radius: inherit;
 }
 
@@ -90,7 +90,7 @@ select[multiple] {
 }
 select[multiple] option {
   white-space: normal;
-  outline-color: var(--color-accent);
+  outline-color: var(--color-primary);
 }
 
 .select--disabled {
@@ -117,4 +117,5 @@ label {
 
 option {
   cursor: pointer;
+  padding: 5px;
 }

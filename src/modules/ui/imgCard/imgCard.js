@@ -23,6 +23,15 @@ export default class LwcCard extends LightningElement {
     return this.item && this.item.name ? this.item.name : "";
   }
 
+  get nameFormatted() {
+    return this.capitalizeFirstOfEachWord(this.name.replace(/-/g, " "));
+  }
+  capitalizeFirstOfEachWord(str) {
+    return str.replace(/(?:^|\s)\S/g, function (a) {
+      return a.toUpperCase();
+    });
+  }
+
   get image() {
     return this.item && this.item.image ? this.item.image : DEFAULT_IMG;
   }

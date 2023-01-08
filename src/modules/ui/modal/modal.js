@@ -42,9 +42,13 @@ export default class Modal extends LightningElement {
         return 'slds-modal slds-fade-in-open slds-modal_medium' */
   }
 
-  close() {
-    this.active = false;
-    this.dispatch("close");
+  close(event) {
+    if(event.target.classList.contains('close')
+    || event.target.classList.contains('modal__content')
+    || event.target.tagName === 'UI-CARD') {
+      this.active = false;
+      this.dispatch("close");
+    }
   }
 
   /**

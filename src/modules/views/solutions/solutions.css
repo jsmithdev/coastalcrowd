@@ -6,7 +6,10 @@ div.container {
 
 div.content {
   display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(50vw, 1fr));
+  column-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
   overflow-y: auto;
+  align-content: space-around;
+  justify-content: space-evenly;
+  align-items: stretch;
 }

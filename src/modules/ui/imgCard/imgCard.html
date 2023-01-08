@@ -4,16 +4,42 @@
       <template if:true={image}>
         <div class="header">
           <div class="image_container">
-            <ui-modal header={name} variant="large">
+
+            <ui-modal header={nameFormatted} variant="large">
               <span slot="trigger">
                 <img class="thumb" src={image} />
               </span>
 
               <span slot="content">
-                <img
-                  src={image}
-                  style="max-width: 100%; border-radius: 10px"
-                />
+                <ui-card>
+
+                  <span slot="header">
+                    <h2>{nameFormatted}</h2>
+                  </span>
+
+                  <span slot="content">
+
+                    <div class="details center">
+                      <div class="actions">
+                        <h3 class="left">Options include:</h3>
+                        <p class="left">Share to copy a link to share</p>
+                        <p class="left">Deploy to Sandbox to deploy to a sandbox Org</p>
+                        <p class="left">Deploy to Dev/Prod to deploy to a Developer or Production Org</p>
+                        <p class="left">Open Project to open a project in a new tab</p>
+
+                        <ui-actions name={name} author={author}></ui-actions>
+
+                        <br />
+                        <br />
+                        <b>Below is pulled from the project's documentation</b>
+                        <hr />
+                      </div>
+                      <div class="docs">
+                        <ui-lightndown url={markdown} baseurl={url}></ui-lightndown>
+                      </div>
+                    </div>
+                  </span>
+                </ui-card>
               </span>
             </ui-modal>
           </div>
@@ -21,77 +47,10 @@
       </template>
 
       <div class="content">
-        <h2>{name}</h2>
+        <h2>{nameFormatted}</h2>
 
         <div class="description">{description}</div>
-      </div>
-      <div class="footer">
-        <slot name="footer">
-          <div class="details">
-            <ui-actions name={name} author={author}></ui-actions>
-
-            <br />
-            <br />
-
-            <span class="trigger_info">
-              <svg onclick={toggle_show} class={show} viewBox="0 0 24 24">
-                <path d="M7,10L12,15L17,10H7Z"></path>
-              </svg>
-            </span>
-
-            <template if:true={show}>
-              <ui-lightndown url={markdown} baseurl={url}>
-                <footer slot="footer" style="text-align: center">
-                  <span class="trigger_info">
-                    <svg
-                      onclick={toggle_show}
-                      class={show}
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M7,10L12,15L17,10H7Z"></path>
-                    </svg>
-                  </span>
-                </footer>
-              </ui-lightndown>
-            </template>
-          </div>
-        </slot>
       </div>
     </div>
   </div>
 </template>
-
-<!-- <div class="details">
-
-            <ui-actions
-                name={name}
-                author={author}
-            ></ui-actions>
-
-            <br />
-            <br />
-
-            <span class="trigger_info">
-                <svg onclick={toggle_show} class={show} viewBox="0 0 24 24">
-                    <path d="M7,10L12,15L17,10H7Z"></path>
-                </svg>
-            </span>
-
-            <template if:true={show}>
-
-                <ui-lightndown 
-                    url={markdown} 
-                    baseurl={url}>
-
-                    <footer slot="footer" style="text-align: center;">
-                        <span class="trigger_info">
-                            <svg onclick={toggle_show} class={show} viewBox="0 0 24 24">
-                                <path d="M7,10L12,15L17,10H7Z"></path>
-                            </svg>
-                        </span>
-                    </footer>
-                </ui-lightndown>
-
-                
-            </template>
-        </div> -->
