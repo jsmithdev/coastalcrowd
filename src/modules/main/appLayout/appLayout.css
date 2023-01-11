@@ -195,7 +195,7 @@ svg {
     grid-template-areas: "drawer content";
     display: grid;
     grid-template-columns: 10rem auto;
-    /* overflow: auto hidden; */
+    overflow: auto hidden;
     grid-template-rows: auto;
     height: -webkit-fill-available;
   }
