@@ -3,89 +3,102 @@ import { api, LightningElement } from "lwc";
 import './imports.js'
 
 export default class AppLayout extends LightningElement {
-  @api appName = "App Layout";
-  @api menuHeader = "Menu";
-  @api sideItems = [];
 
-  get isLarge() {
-    return window.innerWidth > 800;
-  }
+	@api appName = "App Layout";
+	@api menuHeader = "Menu";
+	@api sideItems = [];
 
-  get content() {
-    return this.template.querySelector(".content");
-  }
+	@api
+	get currentView() {
+		return this._currentView;
+	}
+	set currentView(value) {
+		if (!value || value === this._currentView) return;
+		console.log("currentView", value)
+		if(this.drawer) this.drawer.currentView = value;
+		this._currentView = value;
+	}
 
-  renderedCallback() {
-    this.template
-      .querySelector(".menu")
-      .appendChild(document.createElement("menu-icon"));
+	get isLarge() {
+		return window.innerWidth > 800;
+	}
 
-    const drawer = document.createElement("menu-drawer");
+	get content() {
+		return this.template.querySelector(".content");
+	}
 
-    this.template.querySelector(".drawer").appendChild(drawer);
+	renderedCallback() {
+		this.template
+			.querySelector(".menu")
+			.appendChild(document.createElement("menu-icon"));
 
-    drawer.items = this.sideItems;
+		this.drawer = document.createElement("menu-drawer");
 
-    this.resize()
-  }
+		this.template.querySelector(".drawer").appendChild(this.drawer);
 
-  toggleDrawer() {
-    this.isDrawer = this.isDrawer ? false : true;
+		this.drawer.items = this.sideItems;
+		this.drawer.currentView = this.currentView;
 
-    if (this.isDrawer) {
-      this.content.classList.remove("close");
-      this.content.classList.add("open");
-      if (!this.isLarge) this.template.querySelector("menu-icon").toggle(true);
-    } else {
-      this.content.classList.remove("open");
-      this.content.classList.add("close");
-      if (!this.isLarge) this.template.querySelector("menu-icon").toggle(false);
-    }
-  }
+		this.resize()
+	}
 
-  closeDrawer() {
-    // ignore if large
-    if (this.isLarge) return;
-    // toggle icon and drawer
-    this.template.querySelector("menu-icon").toggle(false);
-    this.toggleDrawer();
-  }
+	toggleDrawer() {
+		this.isDrawer = this.isDrawer ? false : true;
 
-  connectedCallback() {
-    this.addEventListeners();
-  }
+		if (this.isDrawer) {
+			this.content.classList.remove("close");
+			this.content.classList.add("open");
+			if (!this.isLarge) this.template.querySelector("menu-icon").toggle(true);
+		} else {
+			this.content.classList.remove("open");
+			this.content.classList.add("close");
+			if (!this.isLarge) this.template.querySelector("menu-icon").toggle(false);
+		}
+	}
 
-  addEventListeners() {
-    window.addEventListener("resize", () => this.resize());
-  }
+	closeDrawer() {
+		// ignore if large
+		if (this.isLarge) return;
+		// toggle icon and drawer
+		this.template.querySelector("menu-icon").toggle(false);
+		this.toggleDrawer();
+	}
 
-  resize() {
-    if (this.wasLarge === this.isLarge) return;
+	connectedCallback() {
+		this.addEventListeners();
+	}
 
-    this.handleSize();
+	addEventListeners() {
+		window.addEventListener("resize", () => this.resize());
+	}
 
-    if (this.isLarge) {
-      this.isDrawer = true;
-      this.content.classList.remove("close");
-      this.content.classList.add("large");
-      /* this.content.classList.add("open"); */
-      this.template.querySelector("menu-icon").hide(true);
-    } else {
-      this.isDrawer = false;
-      this.content.classList.remove("large");
-      this.content.classList.remove("open");
-      this.content.classList.add("close");
-      this.template.querySelector("menu-icon").hide(false);
-      this.template.querySelector("menu-icon").toggle(false);
-    }
-    this.wasLarge = this.isLarge;
-  }
+	resize() {
+		if (this.wasLarge === this.isLarge) return;
 
-  handleSize() {
-    /* https://github.com/w3c/csswg-drafts/issues/4329 */
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    const vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }
+		this.handleSize();
+
+		if (this.isLarge) {
+			this.isDrawer = true;
+			this.content.classList.remove("close");
+			this.content.classList.add("large");
+			/* this.content.classList.add("open"); */
+			this.template.querySelector("menu-icon").hide(true);
+		} else {
+			this.isDrawer = false;
+			this.content.classList.remove("large");
+			this.content.classList.remove("open");
+			this.content.classList.add("close");
+			this.template.querySelector("menu-icon").hide(false);
+			this.template.querySelector("menu-icon").toggle(false);
+		}
+		this.wasLarge = this.isLarge;
+	}
+
+	handleSize() {
+		/* https://github.com/w3c/csswg-drafts/issues/4329 */
+		// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+		const vh = window.innerHeight * 0.01;
+		// Then we set the value in the --vh custom property to the root of the document
+		document.documentElement.style.setProperty("--vh", `${vh}px`);
+	}
 }

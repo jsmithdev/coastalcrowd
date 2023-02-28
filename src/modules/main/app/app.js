@@ -1,7 +1,7 @@
 import { LightningElement } from "lwc";
 
 import {
-	getItems,
+	//getItems,
 	setItem,
 	setItems,
 } from "../../db/db.js";
@@ -134,22 +134,10 @@ export default class App extends LightningElement {
 
 	async handleShared(projects) {
 
-		console.log('meow')
-		console.log('meow')
-		console.log('meow')
-		console.log('meow')
-		console.log('meow')
-
 		const params = (new URL(document.location)).searchParams;
 		const share = params.get('share')
 
-		console.log(JSON.parse(JSON.stringify({
-			share,
-		})));
-
 		if (!share) return console.log('nothing shared');
-
-		console.log('something shared')
 
 		const data = decodeURIComponent(share)
 		const author = data.substring(0, data.indexOf('/'))
@@ -157,15 +145,9 @@ export default class App extends LightningElement {
 
 		const record = projects.find(item => item.name === repo && item.author === author)
 
-		console.log(JSON.parse(JSON.stringify({
-			record,
-		})));
-
 		await setItem(record, 'shared')
 
 		this.currentView = 'shared'
-
-		console.log('SET SHARED', record)
 
 		return undefined
 	}

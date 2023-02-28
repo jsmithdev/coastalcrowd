@@ -6,6 +6,17 @@ export default class Drawer extends LightningElement {
     
     @api items = [];
 
+	@api
+	get currentView() {
+		return this._currentView;
+	}
+	set currentView(value) {
+		if(!value) return;
+		const el = this.template.querySelector(`div[data-name="${value}"]`)
+		if(el) this.highlightItem(el);
+		this._currentView = value;
+	}
+
     get views(){
         
         // highlight first in list
