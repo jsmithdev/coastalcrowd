@@ -1,26 +1,36 @@
 import { openDB } from "idb";
 
 const dbName = "crowd";
-const version = 1;
+const version = 2;
 
-const store = {
-  name: "projects",
-  keyPath: "name",
-  autoIncrement: false,
-};
+const stores = [
+	{
+		name: "projects",
+		keyPath: "name",
+		autoIncrement: false,
+	},
+	{
+		name: "shared",
+		keyPath: "name",
+		autoIncrement: false,
+	},
+];
 
 export const DB = openDB(dbName, version, {
   upgrade(db) {
     console.log("Upgrade db: ", dbName);
 
-    const { name, keyPath, autoIncrement } = store;
+	stores.forEach((store) => {
 
-    if (!db.objectStoreNames.contains(name)) {
-      db.createObjectStore(name, {
-        keyPath,
-        autoIncrement,
-      });
-    }
+		const { name, keyPath, autoIncrement } = store;
+
+		if (!db.objectStoreNames.contains(name)) {
+			db.createObjectStore(name, {
+				keyPath,
+				autoIncrement,
+			});
+		}
+	});
   },
 });
 
@@ -29,8 +39,8 @@ export const DB = openDB(dbName, version, {
  * @param {String} uid name/key
  * @returns {Promise<Object>} single item from store
  */
-export async function getItemById(uid) {
-  return (await DB).get(store.name, uid);
+export async function getItemById(uid, storeName = 'projects') {
+  return (await DB).get(storeName, uid);
 }
 
 /**
@@ -38,8 +48,8 @@ export async function getItemById(uid) {
  * @param {Object} item object to store
  * @returns {Promise<Object>} single item from store
  */
-export async function setItem(item) {
-  return (await DB).put(store.name, item);
+export async function setItem(item, storeName = 'projects') {
+  return (await DB).put(storeName, item);
 }
 
 /**
@@ -47,23 +57,23 @@ export async function setItem(item) {
  * @param {String} uid project name
  * @returns {Promise<Object>} single item from store
  */
-export async function deleteItemById(uid) {
-  return (await DB).delete(store.name, uid);
+export async function deleteItemById(uid, storeName = 'projects') {
+  return (await DB).delete(storeName, uid);
 }
 
 /**
  * Get  store
  */
-export async function getStore() {
-  return (await DB).get(store.name);
+export async function getStore(storeName = 'projects') {
+  return (await DB).get(storeName);
 }
 
 /**
  * Get all items from the database store
  * @returns {Promise} resolves  array of items
  */
-export async function getItems() {
-  return (await DB).getAll(store.name);
+export async function getItems(storeName = 'projects') {
+  return (await DB).getAll(storeName);
 }
 
 /**
@@ -71,9 +81,9 @@ export async function getItems() {
  * @param {Array} array of items
  * @returns {Promise} resolves undefined
  */
-export async function setItems(array) {
+export async function setItems(array, storeName = 'projects') {
   const db = await DB;
-  const tx = db.transaction(store.name, "readwrite");
+  const tx = db.transaction(storeName, "readwrite");
   return Promise.all(array.map((item) => tx.store.put(item)));
 }
 
@@ -81,8 +91,8 @@ export async function setItems(array) {
  * Get all keys/ids from a database store
  * @returns {Promise} resolves  array of keys
  */
-export async function getKeys() {
-  return (await DB).getAllKeys(store.name);
+export async function getKeys(storeName = 'projects') {
+  return (await DB).getAllKeys(storeName);
 }
 
 /**
@@ -90,7 +100,7 @@ export async function getKeys() {
  * @param {String} type - solution, development, etc
  * @returns {Promise} resolves  array of items
  */
-export async function getItemsByType(type) {
-  const items = (await DB).getAll(store.name);
+export async function getItemsByType(type, storeName = 'projects') {
+  const items = (await DB).getAll(storeName);
   return (await items).filter((item) => item.type === type);
 }

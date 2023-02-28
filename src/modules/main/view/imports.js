@@ -6,3 +6,6 @@ customElements.define("views-components", components.CustomElementConstructor);
 
 import solutions from "../../views/solutions/solutions";
 customElements.define("views-solutions", solutions.CustomElementConstructor);
+
+import shared from "../../views/shared/shared";
+customElements.define("views-shared", shared.CustomElementConstructor);
