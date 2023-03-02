@@ -57,7 +57,7 @@ export default class Drawer extends LightningElement {
 
     highlightItem(el){
         if(!el) return;
-        this.template.querySelectorAll('div.item').forEach(el => el.classList.remove('active'));
+        this.template.querySelectorAll('div.item').forEach(e => e.classList.remove('active'));
         el.classList.add('active');
     }
 }
