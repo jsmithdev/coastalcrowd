@@ -1,4 +1,4 @@
-//import '@lwc/synthetic-shadow'; //https://salesforce.stackexchange.com/questions/269615/lightning-web-components-open-source-with-lightning-design-system-lwc-with-slds
+import '@lwc/synthetic-shadow'; // lightning-base-components needs synthetic shadow DOM
 
 import { createElement } from 'lwc';
 import MainApp from 'main/app';
