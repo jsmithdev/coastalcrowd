@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-    <div class="bar">
-      <div class="menu" lwc:dom="manual" onclick={toggleDrawer}></div>
+	
+    <header class="bar">
+      <div class="menu" onclick={toggleDrawer}>
+		<main-menu-icon></main-menu-icon>
+	  </div>
 
       <div class="title">
         <span class="appname">{appName}</span>
@@ -10,19 +13,30 @@
       <div class="right">
         <!-- <img class="appicon" src="res/icon.png" /> -->
       </div>
-    </div>
+    </header>
 
-    <div class="content">
-      <div
-        class="drawer"
-        header={menuHeader}
-        onnavigate={closeDrawer}
-        lwc:dom="manual"
-      ></div>
+	<div class={classContent}>
+		<nav>
+			<main-drawer
+				items={sideItems}
+				header={menuHeader}
+				current-view={currentView}
+				onnavigate={closeDrawer}
+			></main-drawer>
+		</nav>
 
-      <div class="view">
-        <slot name="content"></slot>
-      </div>
-    </div>
+		<main>
+			<div class="scroll">
+				<slot name="content"></slot>
+			</div>
+		</main>
+
+		<template if:false={hideFooter}>
+			<footer>
+				<slot name="footer"></slot>
+			</footer>
+		</template>
+	</div>
+	
   </div>
 </template>

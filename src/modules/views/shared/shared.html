@@ -1,6 +1,14 @@
 <template>
   <div class="container">
     <div class="content">
+		<template if:false={items.length}>
+			<lightning-card title="">
+				<div slot="title">🌊 No Shared Items</div>
+				<div class="card-body">
+					There are no previously shared items to display.
+				</div>
+			</lightning-card>
+		</template>
       <template for:each={items} for:item="item">
         <ui-img-card key={item.title} item={item}></ui-img-card>
       </template>

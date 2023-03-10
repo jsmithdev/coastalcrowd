@@ -1,5 +1,5 @@
 
-.container {
+.home-container {
 	display: grid;
     justify-items: center;
     justify-content: space-evenly;
@@ -10,17 +10,13 @@
 }
 
 .card-body {
-	width: 750px;
+	width: 550px;
+	max-width: 550px;
 	margin: 0rem 1rem;
 }
 /* media query */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 390px) {
 	.card-body {
-		width: 550px;
-	}
-}
-@media screen and (max-width: 600px) {
-	.card-body {
-		width: 86vw;
+		width: 300px;
 	}
 }

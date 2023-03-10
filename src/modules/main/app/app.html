@@ -3,6 +3,7 @@
     <ui-toast></ui-toast>
 
     <main-app-layout
+		hide-footer
       app-name="🌊 Coastal Crowd"
       menu-header="Menu"
       onnavigate={navigate}
@@ -12,6 +13,8 @@
     >
       <span slot="content">
         <main-view view={currentView}></main-view>
+      </span>
+	  <span slot="footer">
       </span>
     </main-app-layout>
   </div>

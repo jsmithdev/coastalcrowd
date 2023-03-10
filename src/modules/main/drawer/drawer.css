@@ -1,11 +1,19 @@
+/* .drawer-bg {
+    user-select: none;
+    height: 100vh;
+    width: -webkit-fill-available;
+    display: grid;
+    grid-template-columns: minmax(400px, 4fr) auto;
+    background: var(--color-dark);
+	opacity: 0.7;
+} */
 .drawer-container {
-  user-select: none;
-  color: var(--color-dark);
-  height: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 4rem auto 3rem;
+    height: 100vh;
+    display: grid; 
+    grid-template-columns: 1fr;
+    grid-template-rows: 4rem auto 3rem;
+	color: var(--color-dark);
+    background: var(--color-bright);
 }
 
 .header {
@@ -18,8 +26,8 @@
 div.item {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 1.2rem;
+  color: var(--color-dark);
   display: block;
   transition: 0.3s;
   cursor: pointer;

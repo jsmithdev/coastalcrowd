@@ -1,12 +1,12 @@
 import { api, LightningElement } from "lwc";
 
-import './imports.js'
 
 export default class AppLayout extends LightningElement {
 
 	@api appName = "App Layout";
 	@api menuHeader = "Menu";
 	@api sideItems = [];
+	@api hideFooter = false
 
 	@api
 	get currentView() {
@@ -20,17 +20,31 @@ export default class AppLayout extends LightningElement {
 	}
 
 	get isLarge() {
-		return window.innerWidth > 800;
+		return window.innerWidth > 850;
 	}
 
+	get container() {
+		return this.template.querySelector(".container");
+	}
 	get content() {
 		return this.template.querySelector(".content");
 	}
+	get menuIcon() {
+		return this.template.querySelector("main-menu-icon");
+	}
+	get drawer() {
+		return this.template.querySelector("main-drawer");
+	}
+	get classContent() {
+		return `content ${this.hideFooter ? "" : "hasFooter"}`
+	}
 
 	renderedCallback() {
-		this.template
+
+		//if(!this._init)
+		/* this.template
 			.querySelector(".menu")
-			.appendChild(document.createElement("menu-icon"));
+			.appendChild(document.createElement("menu-icon")); 
 
 		this.drawer = document.createElement("menu-drawer");
 
@@ -38,7 +52,7 @@ export default class AppLayout extends LightningElement {
 
 		this.drawer.items = this.sideItems;
 		this.drawer.currentView = this.currentView;
-
+*/
 		this.resize()
 	}
 
@@ -48,11 +62,11 @@ export default class AppLayout extends LightningElement {
 		if (this.isDrawer) {
 			this.content.classList.remove("close");
 			this.content.classList.add("open");
-			if (!this.isLarge) this.template.querySelector("menu-icon").toggle(true);
+			if (!this.isLarge) this.menuIcon.toggle(true);
 		} else {
 			this.content.classList.remove("open");
 			this.content.classList.add("close");
-			if (!this.isLarge) this.template.querySelector("menu-icon").toggle(false);
+			if (!this.isLarge) this.menuIcon.toggle(false);
 		}
 	}
 
@@ -60,7 +74,7 @@ export default class AppLayout extends LightningElement {
 		// ignore if large
 		if (this.isLarge) return;
 		// toggle icon and drawer
-		this.template.querySelector("menu-icon").toggle(false);
+		this.menuIcon.toggle(false);
 		this.toggleDrawer();
 	}
 
@@ -80,16 +94,16 @@ export default class AppLayout extends LightningElement {
 		if (this.isLarge) {
 			this.isDrawer = true;
 			this.content.classList.remove("close");
-			this.content.classList.add("large");
-			/* this.content.classList.add("open"); */
-			this.template.querySelector("menu-icon").hide(true);
+			//this.container.classList.add("large");
+			this.container.classList.add("open");
+			this.menuIcon.hide(true);
 		} else {
 			this.isDrawer = false;
-			this.content.classList.remove("large");
+			//this.container.classList.remove("large");
 			this.content.classList.remove("open");
 			this.content.classList.add("close");
-			this.template.querySelector("menu-icon").hide(false);
-			this.template.querySelector("menu-icon").toggle(false);
+			this.menuIcon.hide(false);
+			this.menuIcon.toggle(false);
 		}
 		this.wasLarge = this.isLarge;
 	}
