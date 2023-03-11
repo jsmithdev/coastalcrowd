@@ -14,12 +14,6 @@ export default class Toast extends LightningElement {
 		window.addEventListener('toast', e => this.open( e ));
 	}
 
-	close() {
-		//this.template.querySelector('.container').classList.toggle('')
-
-		this.dispatchEvent(new CustomEvent('dismiss'));
-	}
-
 	get toastClasses() {
 		return `toast ${
 			this.static ? 'no-index' : ''
@@ -30,6 +24,16 @@ export default class Toast extends LightningElement {
 
 	get contentClasses() {
 		return `content theme_${this.variant}`;
+	}
+
+	get classNotify() {
+		return `slds-notify slds-notify_toast slds-theme_${this.variant}`;
+	}
+	get classIcon() {
+		return `slds-icon_container slds-m-right_small slds-no-flex slds-align-top slds-icon-utility-${this.variant}`;
+	}
+	get iconName() {
+		return `utility:${this.variant}`;
 	}
 
 
