@@ -37,6 +37,11 @@ With that, we can add them to the ["database" here](https://github.com/jsmithdev
 
 Built using:
 
-App Layout - <https://github.com/jsmithdev/app-layout>
+- App Generator - <https://github.com/jsmithdev/generator-lwc-app>
 
-[Lightning Web Components](https://lwc.dev) - an _"enterprise-grade, open source, standards-based web component framework"_
+- App Layout - <https://github.com/jsmithdev/app-layout>
+
+- [Lightning Web Components](https://lwc.dev) - an _"enterprise-grade, open source, standards-based web component framework"_
+
+---
+Written with <3 by [Jamie Smith](https://jsmith.dev)

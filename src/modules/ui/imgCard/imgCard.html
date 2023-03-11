@@ -1,5 +1,26 @@
 <template>
-  <div class="container">
+	<div class="container">
+		<lightning-card title={header}>
+
+			<ui-actions
+				item={item}
+				slot="actions"
+			></ui-actions>
+
+			<div class="img-container">
+				<img class="thumb" src={image}></img>
+			</div>
+			<div slot="footer">
+				<p class="left">{description}</p>
+				<!-- <lightning-button
+					label="View"
+					variant="brand"
+					onclick={handleClick}
+				></lightning-button> -->
+			</div>
+		</lightning-card>
+	</div>
+<!--   
     <div class="card">
       <template if:true={image}>
         <div class="header">
@@ -52,5 +73,5 @@
         <div class="description">{description}</div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>

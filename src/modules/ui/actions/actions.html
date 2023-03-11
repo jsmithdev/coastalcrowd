@@ -1,13 +1,18 @@
 <template>
-  <div style="display: inline-block">
-    <ui-select options={actions} onchange={handleSelect}> </ui-select>
-    <br />
-    <ui-button
-      label={action_label}
-      onclick={runAction}
-      class-name={buttonClass}
-    ></ui-button>
 
-    <input style="display: none !important" type="hidden" />
-  </div>
+	<lightning-button-menu 
+	nubbin
+	menu-alignment="right"
+	icon-name="utility:settings"
+	alternative-text="Show menu" 
+	onselect={preformAction}>
+		<template for:each={actions} for:item="action">
+			<lightning-menu-item 
+				title="hello world"
+				key={action.value}
+				value={action.value} 
+				label={action.label}
+			></lightning-menu-item>
+		</template>
+	</lightning-button-menu>
 </template>

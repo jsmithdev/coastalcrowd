@@ -1,4 +1,24 @@
-hr {
+
+.img-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	background-color: var(--color-sand);
+}
+.img-container.selected {
+	position: absolute;
+    width: -webkit-fill-available;
+    z-index: 1;
+    height: 600px;
+}
+img {
+	/* height: 250px; */
+	height: 15vh;
+	  width: auto;
+}
+
+/* hr {
   margin-right: 0.8rem;
 }
 .container {
@@ -20,11 +40,6 @@ hr {
   width: 100%;
   max-width: 750px;
   background: var(--color-primary-text);
-  /* text-align: left;
-	display: grid;
-	grid-template-areas: "header" "content" "footer";
-	grid-template-rows: auto auto auto;
-	grid-template-columns: 100%; */
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.4s;
 }
 .card:hover {
@@ -74,7 +89,6 @@ span.trigger_info > svg {
   background-color: var(--color-tertiary);
   box-shadow: 0 0 5px var(--color-secondary);
   cursor: pointer;
-  /* padding: 3px 0px 3px 3px; */
   -webkit-tap-highlight-color: transparent;
   z-index: 99;
 }
@@ -112,9 +126,6 @@ a.deploy svg {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* .card:hover {
-    box-shadow: 0 4px 4px #FFF, 0 4px 4px var(--color-primary);
-} */
 
 .description {
   padding: 0.8rem 0;
@@ -131,27 +142,12 @@ a.deploy svg {
   text-align: center;
 }
 
-/*
-.long {
-  padding-right: 1rem;
-  text-align: left;
-} .docs {
-  overflow: auto;
-  scroll-behavior: auto;
-  width: 100%;
-  max-height: fit-content;
-  text-align: left;
-} */
 
 .details {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
   background: var(--color-primary-text);
   border-radius: 0px 0px 8px 8px;
   padding-bottom: 0.4rem;
-  /* display: grid;
-  height: 50%;
-  justify-items: center;
-  grid-template-rows: 16fr 85fr; */
 }
 .details > p {
   font-size: 1rem;
@@ -168,4 +164,4 @@ a.deploy svg {
   max-width: 37rem;
   width: -webkit-fill-available;
   margin: 0 auto;
-}
+} */

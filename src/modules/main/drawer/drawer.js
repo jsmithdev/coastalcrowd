@@ -1,5 +1,7 @@
 import { api, LightningElement } from 'lwc';
 
+import { emoji } from './../../utils/emoji';
+
 export default class Drawer extends LightningElement {
 
     @api header = 'Menu'
@@ -24,7 +26,7 @@ export default class Drawer extends LightningElement {
         
         return this.items.map((name, i) => ({
             name,
-            label: name,
+            label: `${emoji(name)} ${name}`,
             key: `side${i}`
         }));
     }

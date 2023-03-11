@@ -21,7 +21,6 @@ export default class App extends LightningElement {
 	/**
 	 *
 	 * @param {CustomEvent} e - event who's detail is used to toast (falsey will close)
-	 * @returns
 	 */
 	toast(e) {
 		if (!e) return this.toaster.close();
@@ -59,6 +58,8 @@ export default class App extends LightningElement {
 		window.addEventListener("online", () => this.isOnline());
 
 		window.addEventListener("offline", () => this.isOffline());
+		
+		window.addEventListener("toast", (e) => this.toast(e));
 	}
 
 	isOnline() {

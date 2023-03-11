@@ -3,138 +3,122 @@
 import { api, LightningElement } from "lwc";
 
 export default class Actions extends LightningElement {
-  @api name = "";
-  @api author = "";
 
-  action = "";
-  success = false;
-  port = location.hostname === "localhost" ? `:${location.port}` : "";
-  host = `${location.protocol}//${location.hostname}${this.port}`;
+	@api item = {};
 
-  buttonClass = "";
+	action = "";
+	success = false;
+	port = location.hostname === "localhost" ? `:${location.port}` : "";
+	host = `${location.protocol}//${location.hostname}${this.port}`;
+	
+	get actions() {
+		return [
+			{
+				label: "Copy Link",
+				value: "share",
+				success: "Copied successfully!",
+			},
+			{
+				label: "Open Project",
+				value: "open_repo",
+			},
+			{
+				label: "Deploy to Sandbox",
+				value: "deploy_sandbox",
+			},
+			{
+				label: "Deploy to Dev/Prod",
+				value: "deploy_production",
+			},
+		];
+	}
 
-  get action_label() {
-    const record = this.action
-      ? this.actions.find((action) => action.value === this.action)
-      : this.actions[0];
+	get name() {
+		return this.item.name ? this.item.name : "";
+	}
+	get author() {
+		return this.item.author ? this.item.author : "";
+	}
+	get urls() {
+		return {
+			share: `${this.host}?share=${encodeURIComponent(
+				`${this.author}/${this.name}`
+			)}`,
+			deploy_production: `https://githubsfdeploy.herokuapp.com/app/githubdeploy/${this.author}/${this.name} `,
+			deploy_sandbox: `https://githubsfdeploy-sandbox.herokuapp.com/app/githubdeploy/${this.author}/${this.name} `,
+			open_repo: `https://github.com/${this.author}/${this.name} `,
+		};
+	}
 
-    const { label, button, button_success } = record;
-    const value =
-      this.success && button_success ? button_success : button || label;
-    const end = value.indexOf(" ") === -1 ? value.length : value.indexOf(" ");
-    return value.substring(0, end);
-  }
+	preformAction({detail}) {
+		const {value} = detail;
+		console.log("selected", value);
 
-  get actions() {
-    return [
-      {
-        label: "Share",
-        button: "Copy",
-        button_success: "Copied!",
-        value: "share",
-      },
-      {
-        label: "Deploy to Sandbox",
-        value: "deploy_sandbox",
-      },
-      {
-        label: "Deploy to Dev/Prod",
-        value: "deploy_production",
-      },
-      {
-        label: "Open Project",
-        value: "open_repo",
-      },
-    ];
-  }
+		if (value === "share") {
+			const url = this.urls[value];
+			const success = this.copyTextToClipboard(url);
+			if(success) {
+				return this.toast({
+					success,
+					message: "Copied successfully!",
+					variant: "success",
+				})
+			}
+			return this.toast({
+				success,
+				message: "Could not copy to clipboard",
+				variant: "error",
+			})
+		}
+		const url = this.urls[value];
+		return window.open(url, "_blank");
+	}
 
-  get urls() {
-    return {
-      share: `${this.host}?share=${encodeURIComponent(
-        `${this.author}/${this.name}`
-      )}`,
-      deploy_production: `https://githubsfdeploy.herokuapp.com/app/githubdeploy/${this.author}/${this.name} `,
-      deploy_sandbox: `https://githubsfdeploy-sandbox.herokuapp.com/app/githubdeploy/${this.author}/${this.name} `,
-      open_repo: `https://github.com/${this.author}/${this.name} `,
-    };
-  }
+	toast(detail){
+		this.dispatchEvent(new CustomEvent('toast', {
+			bubbles: true,
+			composed: true,
+			detail,
+		}))
+	}
 
-  handleSelect(event) {
-    const { value } = event.target;
+	copyTextToClipboard(text) {
+	
+		return new Promise((res, rej) => navigator.clipboard.writeText(text).then(
+			() => res(true),
+			() => {
+				const success = this.fallbackCopyTextToClipboard(text);
+				if(success) {
+					return res(false);
+				}
+				return rej(false);
+			})
+		);
+	}
 
-    this.action = value;
-  }
+	fallbackCopyTextToClipboard(text) {
+		const textArea = document.createElement("textarea");
+		textArea.value = text;
 
-  runAction() {
-    if (!this.action) {
-      const { value } = this.actions[0];
-      this.action = value;
-    }
+		// Avoid scrolling to bottom
+		textArea.style.top = "0";
+		textArea.style.left = "0";
+		textArea.style.position = "fixed";
 
-    if (this.action === "share") {
-      const url = this.urls[this.action];
-      return this.copyTextToClipboard(url);
-    }
-    const url = this.urls[this.action];
-    return window.open(url, "_blank");
-  }
+		document.body.appendChild(textArea);
+		textArea.focus();
+		textArea.select();
 
-  copyTextToClipboard(text) {
-    if (!navigator.clipboard) {
-      return this.fallbackCopyTextToClipboard(text);
-    }
-
-    navigator.clipboard.writeText(text).then(
-      () => {
-        this.copySuccess();
-      },
-      function (error) {
-        console.error("Async: Could not copy text: ", error);
-        return this.fallbackCopyTextToClipboard(text);
-      }
-    );
-    return undefined;
-  }
-
-  fallbackCopyTextToClipboard(text) {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-
-    // Avoid scrolling to bottom
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
-
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
-    try {
-      const successful = document.execCommand("copy");
-      if (successful) {
-        this.copySuccess();
-      } else {
-        return console.error("Fallback: Unable to copy: ", successful);
-      }
-    } catch (error) {
-      return console.error("Fallback: Oops, unable to copy", error);
-    }
-
-    return document.body.removeChild(textArea);
-  }
-  toggleSuccess() {
-    const clear = () => {
-      this.success = false;
-      this.buttonClass = "";
-    };
-
-    this.success = true;
-    this.buttonClass = "success";
-
-    setTimeout(clear, 4000);
-  }
-  copySuccess() {
-    this.toggleSuccess();
-    setTimeout(this.toggleSuccess, 4000);
-  }
+		try {
+			const successful = document.execCommand("copy");
+			
+			document.body.removeChild(textArea);
+			if (successful) {
+				return true
+			} 
+			return false
+		} catch (error) {
+			return false
+		}
+	}
 }

@@ -16,7 +16,7 @@ div.container {
 div.content {
   display: grid;
   column-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 450px));
   overflow-y: auto;
   align-content: space-around;
   justify-content: space-evenly;
