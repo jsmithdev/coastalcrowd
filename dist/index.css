@@ -1,0 +1,40 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan&display=swap");
+
+/* Global vars */
+:root {
+  --color-primary: #1c75bc;
+  --color-secondary: #fff;
+  --color-tertiary: #92e1ff;
+  --color-quaternary: #ffaebc;
+
+  --color-primary-text: #fff;
+
+  --color-dark: #423939;
+  --color-light: #EEE;
+  --color-bright: #FFF;
+  --color-sand: #C2B280;
+  /* for drawer icon */
+  --icon-color: var(--color-primary);
+
+  /* 
+	#146584
+	#c9f0ff
+	*/
+}
+
+html {
+  /* font-family: 'Roboto', sans-serif; */
+  /* font-family: "League Spartan", sans-serif; */
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  margin: 0px;
+}
+
+a {
+  color: var(--color-quaternary);
+}
