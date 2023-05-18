@@ -8,7 +8,7 @@
 	onselect={preformAction}>
 		<template for:each={actions} for:item="action">
 			<lightning-menu-item 
-				title="hello world"
+				title={action.label}
 				key={action.value}
 				value={action.value} 
 				label={action.label}

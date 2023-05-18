@@ -7,8 +7,11 @@
     background: var(--color-dark);
 	opacity: 0.7;
 } */
+.drawer-bg {
+	height: 100%;
+}
 .drawer-container {
-  height: 100vh;
+	height: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3rem auto 3rem;
@@ -39,8 +42,8 @@ div.item:hover {
 }
 
 div.item.active {
-  text-decoration: underline;
-  text-underline-position: under;
+	color: var(--color-primary);
+	font-weight: 600;
 }
 
 /* .version-container {

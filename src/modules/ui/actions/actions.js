@@ -10,7 +10,7 @@ export default class Actions extends LightningElement {
 	success = false;
 	port = location.hostname === "localhost" ? `:${location.port}` : "";
 	host = `${location.protocol}//${location.hostname}${this.port}`;
-	
+
 	get actions() {
 		return [
 			{
@@ -23,13 +23,13 @@ export default class Actions extends LightningElement {
 				value: "open_repo",
 			},
 			{
-				label: "Deploy to Sandbox",
-				value: "deploy_sandbox",
+				label: "Deploy to Salesforce",
+				value: "deploy",
 			},
-			{
-				label: "Deploy to Dev/Prod",
-				value: "deploy_production",
-			},
+			//{
+			//	label: "Deploy to Dev/Prod",
+			//	value: "deploy_production",
+			//},
 		];
 	}
 
@@ -39,14 +39,18 @@ export default class Actions extends LightningElement {
 	get author() {
 		return this.item.author ? this.item.author : "";
 	}
+	get deployBranch() {
+		return this.item['deploy-branch'] || 'master';
+	}
 	get urls() {
 		return {
 			share: `${this.host}?share=${encodeURIComponent(
 				`${this.author}/${this.name}`
 			)}`,
-			deploy_production: `https://githubsfdeploy.herokuapp.com/app/githubdeploy/${this.author}/${this.name} `,
-			deploy_sandbox: `https://githubsfdeploy-sandbox.herokuapp.com/app/githubdeploy/${this.author}/${this.name} `,
-			open_repo: `https://github.com/${this.author}/${this.name} `,
+			deploy_production: `https://githubsfdeploy.herokuapp.com/app/githubdeploy/${this.author}/${this.name}&ref=${this.deployBranch}`,
+			deploy_sandbox: `https://githubsfdeploy-sandbox.herokuapp.com/app/githubdeploy/${this.author}/${this.name}&ref=${this.deployBranch}`,
+			deploy: `https://githubsfdeploy.herokuapp.com/?owner=${this.author}&repo=${this.name}&ref=${this.deployBranch}`,
+			open_repo: `https://github.com/${this.author}/${this.name}&ref=${this.deployBranch}`,
 		};
 	}
 

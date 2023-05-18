@@ -116,10 +116,10 @@ export default class App extends LightningElement {
 					return `https://github.com/${p.author}/${p.name}.git`;
 				},
 				get url() {
-					return `https://github.com/${p.author}/${p.name}/tree/master/`;
+					return `https://github.com/${p.author}/${p.name}/tree/${p['deploy-branch'] || 'master'}']}`;
 				},
 				get markdown() {
-					return `https://raw.githubusercontent.com/${p.author}/${p.name}/master/README.md`;
+					return `https://raw.githubusercontent.com/${p.author}/${p.name}/${p['deploy-branch'] || 'master'}/README.md`;
 				},
 			});
 		});

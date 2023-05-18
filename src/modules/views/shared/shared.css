@@ -1,24 +1,26 @@
-div.container {
-	display: grid;
+
+.container {
+	/* display: grid;
     justify-items: center;
     justify-content: space-evenly;
     align-items: center;
     align-content: space-between;
-    grid-row-gap: 1rem;
+    grid-row-gap: 1rem; */
     margin: 1rem;
-}
-
-.card-body {
-	max-width: 550px;
-	margin: 0rem 1rem;
 }
 
 div.content {
   display: grid;
   column-gap: 10px;
+  row-gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 450px));
   overflow-y: auto;
   align-content: space-around;
   justify-content: space-evenly;
   align-items: stretch;
+}
+
+.card-body {
+	max-width: 550px;
+	margin: 0rem 1rem;
 }
