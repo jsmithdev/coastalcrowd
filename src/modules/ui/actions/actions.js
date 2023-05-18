@@ -50,7 +50,7 @@ export default class Actions extends LightningElement {
 			deploy_production: `https://githubsfdeploy.herokuapp.com/app/githubdeploy/${this.author}/${this.name}&ref=${this.deployBranch}`,
 			deploy_sandbox: `https://githubsfdeploy-sandbox.herokuapp.com/app/githubdeploy/${this.author}/${this.name}&ref=${this.deployBranch}`,
 			deploy: `https://githubsfdeploy.herokuapp.com/?owner=${this.author}&repo=${this.name}&ref=${this.deployBranch}`,
-			open_repo: `https://github.com/${this.author}/${this.name}&ref=${this.deployBranch}`,
+			open_repo: `https://github.com/${this.author}/${this.name}`,
 		};
 	}
 
