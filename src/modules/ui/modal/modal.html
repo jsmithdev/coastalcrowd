@@ -1,54 +1,75 @@
 <template>
-  <div class="trigger" onclick={show}>
-    <slot name="trigger">
-      <a>{trigger}</a>
-    </slot>
-  </div>
 
-  <template if:true={loading}> Loading... </template>
-
-  <template if:false={loading}>
-    <template if:true={active}>
-      <section
-        role="dialog"
-        tabindex="-1"
-        class={modalClassList}
-      >
-        <div class="modal__container">
-          <div class="modal__header">
-            <div
-              class="close"
-              title="Close"
-              onclick={close}
-            >
-              <svg class="close" fill="#FFF" viewBox="0 0 24 24" onclick={close}>
-                <path class="close"
-                  d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                ></path>
-              </svg>
-            </div>
-
-          </div>
-
-          <div class="modal__content slds-p-around_medium" onclick={close}>
-            <slot name="content">
-              Nothing in modal's content slot. See
-              <a href="https://github.com/jsmithdev/modal">readme</a> for more.
-            </slot>
-          </div>
-
-          <footer class="slds-modal__footer modal-hidden">
-            <div class="footer__center">
-              <slot name="footer-center"></slot>
-            </div>
-
-            <!-- <ui-button label="Close" onclick={close}></ui-button> -->
-
-            <slot name="footer"></slot>
-          </footer>
-        </div>
-      </section>
-      <div class="slds-backdrop slds-backdrop_open" onclick={close}></div>
+    <template if:true={trigger}>
+		<div class="trigger" onclick={open}>
+			<slot name="trigger">
+				<a>{trigger}</a>
+			</slot>
+		</div>
     </template>
-  </template>
+
+    <template if:true={loading}>
+		<lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+    </template>
+
+	<template if:false={loading}>
+
+		<template if:true={active}>
+			<section
+				role="dialog"
+				tabindex="-1"
+				aria-labelledby="modal-heading-01"
+				aria-modal="true"
+				aria-describedby="modal-content-id-1"
+				class={modalClassList}>
+
+				<div class="slds-modal__container">
+
+					<header class="slds-modal__header">
+
+						<lightning-button-icon
+							class="slds-modal__close"
+							title="Close"
+							icon-name="utility:close"
+							icon-class="slds-button_icon-inverse"
+							onclick={close}
+						></lightning-button-icon>
+									
+						<slot name="header">
+							<h2 class="slds-text-heading_medium slds-hyphenate header-string">
+								{header}
+							</h2>
+						</slot>
+						
+					</header>
+
+
+					<div class="slds-modal__content slds-p-around_medium">
+						<slot name="content">
+							Nothing in modal's content slot. See <a href="https://github.com/jsmithdev/modal">readme</a> for more.
+						</slot>
+					</div>
+	
+
+
+					<footer class="slds-modal__footer modal-hidden">
+
+						<div class="footer__center">
+							<slot name="footer-center"></slot>
+						</div>
+						
+						<lightning-button 
+                            label="Close"
+                            onclick={close}
+						></lightning-button>
+						
+						<slot name="footer"></slot>
+
+					</footer>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+			
+		</template>
+	</template>
 </template>

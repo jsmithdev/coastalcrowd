@@ -1,37 +1,40 @@
-import { api, track, LightningElement } from "lwc";
+import { api, LightningElement } from 'lwc';
 
 export default class Modal extends LightningElement {
-  @api header;
-  @api trigger;
-  @api value;
-  /**
-   * @description {String} small | medium | large
-   */
-  @api variant;
 
-  @track loading;
-  @track active;
-  @track data = [];
+    active
+    loading
+    data = []
+    is = 'modal'
 
-  is = "modal";
+    @api header
+    @api trigger
+    @api value
+    /**
+     * @description {String} small | medium | large
+     */
+    @api variant
 
-  show() {
-    console.log("show");
-    this.loading = true;
-    this.active = true;
+    @api open(){
 
-    this.loading = false;
-  }
+        this.loading = true
+        this.active = true
 
-  get modalClassList() {
-    if (this.variant === "large") {
-      return "slds-modal slds-fade-in-open slds-modal_large";
-    } else if (this.variant === "small") {
-      return "slds-modal slds-fade-in-open slds-modal_small";
+        this.loading = false
     }
 
-    return "slds-modal slds-fade-in-open slds-modal_medium";
-    /* 
+    @api close(){
+        this.active = false
+        this.dispatch('close')
+    }
+
+    @api isOpen(){
+        return this.active ? true : false;
+    }
+
+    
+    get modalClassList(){
+
         if(this.variant === 'large'){
             return 'slds-modal slds-fade-in-open slds-modal_large'
         }
@@ -39,30 +42,35 @@ export default class Modal extends LightningElement {
             return 'slds-modal slds-fade-in-open slds-modal_small'
         }
 
-        return 'slds-modal slds-fade-in-open slds-modal_medium' */
-  }
-
-  close(event) {
-    if(event.target.classList.contains('close')
-    || event.target.classList.contains('modal__content')
-    || event.target.tagName === 'UI-CARD') {
-      this.active = false;
-      this.dispatch("close");
+        return 'slds-modal slds-fade-in-open slds-modal_medium'
     }
-  }
 
-  /**
-   * dispatch a (bubbles & composed true) CustomEvent
-   * @param {String} name name of event
-   * @param {Object} detail object to send
-   */
-  dispatch(name, detail = {}) {
-    this.dispatchEvent(
-      new CustomEvent(name, {
-        bubbles: true,
-        composed: true,
-        detail,
-      })
-    );
-  }
+
+    error(message){
+        this.toast(message, 'Error', 'error')
+    }
+
+    toast( message = '', title = 'Info', variant = 'info') {
+        
+        const detail = {
+            title,
+            message,
+            variant,
+        }
+
+        this.dispatch('toast', detail)
+    }
+    /**
+     * dispatch a (bubbles & composed true) CustomEvent
+     * @param {String} name name of event
+     * @param {Object} detail object to send
+     */
+    dispatch(name, detail = {}){
+
+        this.dispatchEvent(new CustomEvent( name , {
+            bubbles: true, 
+            composed : true,
+            detail
+        }))
+    }
 }
