@@ -1,18 +1,28 @@
 <template>
 
-	<lightning-button-menu 
-	nubbin
-	menu-alignment="right"
-	icon-name="utility:settings"
-	alternative-text="Show menu" 
-	onselect={preformAction}>
-		<template for:each={actions} for:item="action">
-			<lightning-menu-item 
-				title={action.label}
-				key={action.value}
-				value={action.value} 
-				label={action.label}
-			></lightning-menu-item>
-		</template>
-	</lightning-button-menu>
+	<lightning-button-group>
+			<lightning-button 
+				key={id}
+				value="details" 
+				label="Details"
+				title="Details"
+				onclick={preformAction}
+			></lightning-button>
+			<!-- icon-name="utility:settings" -->
+			<lightning-button-menu 
+				nubbin
+				menu-alignment="right"
+				alternative-text="Show menu" 
+				onselect={preformAction}>
+				<template for:each={actions} for:item="action">
+					<lightning-menu-item 
+						title={action.label}
+						key={action.value}
+						value={action.value} 
+						label={action.label}
+					></lightning-menu-item>
+				</template>
+			</lightning-button-menu>
+	</lightning-button-group>
+
 </template>

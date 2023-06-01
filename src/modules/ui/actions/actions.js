@@ -2,6 +2,9 @@
 /* eslint-disable @lwc/lwc/no-api-reassignments */
 import { api, LightningElement } from "lwc";
 
+import { generateUUID } from '../../utils/strings.js'
+import { copyTextToClipboard } from '../../utils/clipboard.js'
+
 export default class Actions extends LightningElement {
 
 	@api item = {};
@@ -53,76 +56,53 @@ export default class Actions extends LightningElement {
 			open_repo: `https://github.com/${this.author}/${this.name}`,
 		};
 	}
+	get id() {
+		return generateUUID();
+	}
 
-	preformAction({detail}) {
-		const {value} = detail;
-		console.log("selected", value);
+	preformAction(event) {
+
+		const value = event.detail?.value || event.target.value;
+
+		if(value === 'details') {
+			return this.dispatch('details');
+		}
+
+		const url = this.urls[value];
 
 		if (value === "share") {
-			const url = this.urls[value];
-			const success = this.copyTextToClipboard(url);
-			if(success) {
-				return this.toast({
-					success,
-					message: "Copied successfully!",
-					variant: "success",
-				})
-			}
-			return this.toast({
-				success,
-				message: "Could not copy to clipboard",
-				variant: "error",
-			})
+			return this.share(url);
 		}
-		const url = this.urls[value];
+		
 		return window.open(url, "_blank");
 	}
 
+	share(url) {
+
+		const success = copyTextToClipboard(url);
+
+		if(success) {
+			return this.toast({
+				success,
+				message: "Copied successfully!",
+				variant: "success",
+			})
+		}
+		return this.toast({
+			message: "Could not copy to clipboard",
+			variant: "error",
+		})
+	}
+	
 	toast(detail){
-		this.dispatchEvent(new CustomEvent('toast', {
+		this.dispatch('toast', detail);
+	}
+
+	dispatch(name, detail){
+		this.dispatchEvent(new CustomEvent(name, {
 			bubbles: true,
 			composed: true,
 			detail,
 		}))
-	}
-
-	copyTextToClipboard(text) {
-	
-		return new Promise((res, rej) => navigator.clipboard.writeText(text).then(
-			() => res(true),
-			() => {
-				const success = this.fallbackCopyTextToClipboard(text);
-				if(success) {
-					return res(false);
-				}
-				return rej(false);
-			})
-		);
-	}
-
-	fallbackCopyTextToClipboard(text) {
-		const textArea = document.createElement("textarea");
-		textArea.value = text;
-
-		// Avoid scrolling to bottom
-		textArea.style.top = "0";
-		textArea.style.left = "0";
-		textArea.style.position = "fixed";
-
-		document.body.appendChild(textArea);
-		textArea.focus();
-		textArea.select();
-
-		try {
-			const successful = document.execCommand("copy");
-			
-			document.body.removeChild(textArea);
-			if (successful) {
-				return true
-			} 
-			return false
-		} catch (error) {
-			return false
-		}
 	}
 }
