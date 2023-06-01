@@ -82,4 +82,9 @@ export default class LwcCard extends LightningElement {
 			})
 		);
 	}
+
+	showDetailModal() {
+		console.log('details')
+		this.template.querySelector("ui-modal").open();
+	}
 }

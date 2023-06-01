@@ -5,6 +5,7 @@
 			<ui-actions
 				item={item}
 				slot="actions"
+				ondetails={showDetailModal}
 			></ui-actions>
 
 			<div class="img-container">
@@ -20,6 +21,19 @@
 			</div>
 		</lightning-card>
 	</div>
+
+	<ui-modal header={nameFormatted} variant="large">
+
+		<span slot="content">
+			<div class="details center">
+				<center><i>Below is pulled from the project's documentation</i></center>
+				<hr style="margin: 0rem 1rem 0;" />
+				<div class="docs">
+					<ui-lightndown url={markdown} baseurl={url}></ui-lightndown>
+				</div>
+			</div>
+		</span>
+	</ui-modal>
 <!--   
     <div class="card">
       <template if:true={image}>
