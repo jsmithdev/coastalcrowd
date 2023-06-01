@@ -8,7 +8,7 @@ pre {
   max-width: 90%;
   white-space: pre-line;
   max-height: 100%;
-  height: 42vh;
+  /* height: 42vh; */
 }
 
 /**
