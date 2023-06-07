@@ -12,7 +12,7 @@
     z-index: 1;
     height: 600px;
 }
-img {
+img, video {
 	/* height: 250px; */
 	height: 15vh;
 	  width: auto;

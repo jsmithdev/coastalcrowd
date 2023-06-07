@@ -9,7 +9,12 @@
 			></ui-actions>
 
 			<div class="img-container">
-				<img class="thumb" src={image}></img>
+				<template if:true={isImage}>
+					<img class="thumb" src={image}></img>
+				</template>
+				<template if:false={isImage}>
+					<video class="thumb" src={video} controls></video>
+				</template>
 			</div>
 			<div slot="footer">
 				<p class="left">{description}</p>

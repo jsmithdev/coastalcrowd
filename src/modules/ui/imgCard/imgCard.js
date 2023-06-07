@@ -41,7 +41,13 @@ export default class LwcCard extends LightningElement {
 	}
 
 	get image() {
-		return this.item && this.item.image ? this.item.image : DEFAULT_IMG;
+		return this.item?.image ? this.item.image : DEFAULT_IMG;
+	}
+	get isImage() {
+		return this.item?.video ? false : true;
+	}
+	get video() {
+		return this.item?.video;
 	}
 
 	get description() {
@@ -86,5 +92,12 @@ export default class LwcCard extends LightningElement {
 	showDetailModal() {
 		console.log('details')
 		this.template.querySelector("ui-modal").open();
+	}
+
+	// function returns true if it's an image file extension
+	isImageFile(filename) {
+
+		const ext = filename.split('.').pop();
+		return ext === 'png' || ext === 'jpg' || ext === 'jpeg' || ext === 'gif';
 	}
 }
