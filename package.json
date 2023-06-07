@@ -1,7 +1,7 @@
 {
   "name": "coastal-crowd",
   "description": "An app for composable components and/or solutions",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": "Jamie Smith (me@jsmith.dev)",
   "repository": {
     "type": "git"
