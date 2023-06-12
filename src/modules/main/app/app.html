@@ -1,21 +1,24 @@
 <template>
-  <div class="app">
-    <ui-toast></ui-toast>
+	<div class="app">
+		<ui-toast></ui-toast>
 
-    <main-app-layout
-		hide-footer
-      app-name="🌊 Coastal Crowd"
-      menu-header="Menu"
-      onnavigate={navigate}
-      ontoast={toast}
-      side-items={things}
-	  current-view={currentView}
-    >
-      <span slot="content">
-        <main-view view={currentView}></main-view>
-      </span>
-	  <span slot="footer">
-      </span>
-    </main-app-layout>
-  </div>
+		<main-app-layout 
+			hide-footer 
+			app-name="🌊 Coastal Crowd" 
+			menu-header="Menu" 
+			onnavigate={navigate}
+			ontoast={toast} 
+			side-items={views} 
+			current-view={currentView}>
+
+				<span slot="header-right">
+					<lightning-icon onclick={toggleSearch} icon-name="utility:search" variant={searchVariant} size="small"></lightning-icon>
+				</span>
+				<span slot="content">
+					<main-view view={currentView}></main-view>
+				</span>
+				<span slot="footer">
+				</span>
+		</main-app-layout>
+	</div>
 </template>

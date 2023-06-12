@@ -7,12 +7,18 @@ import {
 } from "../../db/db.js";
 
 export default class App extends LightningElement {
-	things = ["home", "components", "solutions", "shared"];
 
-	currentView = this.things[0];
+	currentView = this.views[0];
 	offline = false;
 	hideViews = false;
 	loading = false;
+	searchVariant = 'inverse';
+
+	get views() {
+		// set in webpack.config.js
+		// eslint-disable-next-line no-undef
+		return this.configViews(__VIEWS__) || [];
+	}
 
 	get toaster() {
 		return this.template.querySelector("ui-toast");
@@ -151,5 +157,27 @@ export default class App extends LightningElement {
 		this.currentView = 'shared'
 
 		return undefined
+	}
+
+	configViews(views) {
+		const ordered = ['home', 'solutions']
+		return [
+			...ordered,
+			...views
+				.filter(view => !ordered.includes(view))
+				.filter(view => view !== 'search'),
+		]
+	}
+
+	toggleSearch() {
+		if(this.currentView === 'search'){
+			this.currentView = this.lastView;
+			this.searchVariant = 'inverse';
+		}
+		else {
+			this.lastView = this.currentView;
+			this.currentView = 'search';
+			this.searchVariant = 'warning';
+		}
 	}
 }

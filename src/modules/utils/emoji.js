@@ -11,5 +11,6 @@ export function emoji(type) {
 	if (type === 'business') return '📊';
 	if (type === 'deploy') return '🚀';
 	if (type === 'other') return '🤷‍♂️';
+	if (type === 'search') return '🔍';
 	return '🤷‍♂️';
 }

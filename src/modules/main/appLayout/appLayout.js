@@ -14,7 +14,6 @@ export default class AppLayout extends LightningElement {
 	}
 	set currentView(value) {
 		if (!value || value === this._currentView) return;
-		console.log("currentView", value)
 		if(this.drawer) this.drawer.currentView = value;
 		this._currentView = value;
 	}
@@ -52,7 +51,7 @@ export default class AppLayout extends LightningElement {
 
 		this.drawer.items = this.sideItems;
 		this.drawer.currentView = this.currentView;
-*/
+		*/
 		this.resize()
 	}
 

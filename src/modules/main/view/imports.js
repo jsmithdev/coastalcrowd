@@ -9,3 +9,6 @@ customElements.define("views-solutions", solutions.CustomElementConstructor);
 
 import shared from "../../views/shared/shared.js";
 customElements.define("views-shared", shared.CustomElementConstructor);
+
+import search from "../../views/search/search.js";
+customElements.define("views-search", search.CustomElementConstructor);
