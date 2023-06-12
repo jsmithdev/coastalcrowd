@@ -11,7 +11,7 @@ export default class LwcCard extends LightningElement {
 	@api item;
 
 	connectedCallback() {
-		console.log('item', JSON.parse(JSON.stringify(this.item)));
+		//console.log('item', JSON.parse(JSON.stringify(this.item)));
 	}
 
 	get show() {
