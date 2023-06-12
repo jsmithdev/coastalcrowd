@@ -1,4 +1,4 @@
-import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
+import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute.js';
 // eslint-disable-next-line no-restricted-globals
 precacheAndRoute(self.__WB_MANIFEST);
 
