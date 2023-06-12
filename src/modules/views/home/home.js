@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 
-import { emoji } from './../../utils/emoji';
+import { emoji } from './../../utils/emoji.js';
 
 export default class Home extends LightningElement {
 	get eHome() {
