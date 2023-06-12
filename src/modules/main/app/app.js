@@ -51,8 +51,12 @@ export default class App extends LightningElement {
 	navigate(event) {
 		const { name } = event.detail;
 
-		if (name !== this.currentView) {
+		if (name === "search") {
+			this.toggleSearch();
+		}
+		else if (name !== this.currentView) {
 			this.currentView = name;
+			this.searchVariant = 'inverse';
 		}
 	}
 
