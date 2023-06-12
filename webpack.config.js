@@ -1,11 +1,19 @@
-const path = require("path");
+import path from "path";
+import { promises as fs } from "fs";
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const { DefinePlugin } = require("webpack");
-const { InjectManifest } = require('workbox-webpack-plugin');
+import { InjectManifest } from 'workbox-webpack-plugin';
 
-const LwcWebpackPlugin = require("lwc-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
+import LwcWebpackPlugin from "lwc-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+
+// get __dirname in es6 modules
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 
 const isProd = process.argv.indexOf("--mode=production") >= 0;
 console.log(isProd ? "Production build" : "Development build");
@@ -29,10 +37,13 @@ const resources = [
 	{ from: "src/manifest.json", to: "manifest.json" },
 ];
 
+const views = await fs.readdir(path.join(__dirname, "src", "modules", "views"));
+
 const plugins = [
 	new LwcWebpackPlugin(),
 	new DefinePlugin({
 		__VERSION__: JSON.stringify(version),
+		__VIEWS__: JSON.stringify(views),
 	}),
 	new HtmlWebpackPlugin({ template: "./src/index.html" }),
 	new CopyPlugin({
@@ -49,7 +60,7 @@ if (isProd) {
 }
 
 
-module.exports = {
+export default {
 	mode: "production",
 
 	entry: {

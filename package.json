@@ -1,7 +1,8 @@
 {
   "name": "coastal-crowd",
   "description": "An app for composable components and/or solutions",
-  "version": "1.0.9",
+  "version": "1.0.10",
+  "type": "module",
   "author": "Jamie Smith (me@jsmith.dev)",
   "repository": {
     "type": "git"
@@ -17,6 +18,9 @@
     "./src/**/*.js": [
       "eslint"
     ]
+  },
+  "engines": {
+	"node": ">=16.13.1"
   },
   "devDependencies": {
     "@lwc/eslint-plugin-lwc": "^1.5.0",
@@ -45,6 +49,7 @@
     "workbox-webpack-plugin": "^6.5.4"
   },
   "scripts": {
+    "dev": "nodemon webpack serve --config webpack.dev.js",
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --mode=production",
     "build:dev": "webpack",
