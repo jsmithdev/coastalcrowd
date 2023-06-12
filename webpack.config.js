@@ -37,7 +37,9 @@ const resources = [
 	{ from: "src/manifest.json", to: "manifest.json" },
 ];
 
-const views = await fs.readdir(path.join(__dirname, "src", "modules", "views"));
+// read view directory to get list of views
+const views = (await fs.readdir(path.join(__dirname, "src", "modules", "views")))
+	.filter(x => !x.includes('.'));
 
 const plugins = [
 	new LwcWebpackPlugin(),
