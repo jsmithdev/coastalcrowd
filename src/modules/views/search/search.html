@@ -1,0 +1,22 @@
+<template>
+
+	<div class="search">
+		<lightning-input
+			type="search"
+			label="Search"
+			placeholder="Search for names or keywords"
+			variant="label-hidden"
+			value={searchTerm}
+			onchange={handleSearchTermChange}
+			onsearch={handleSearch}
+		></lightning-input>
+	</div>
+
+	<div class="container">
+		<div class="content">
+			<template for:each={filtered} for:item="item">
+				<ui-img-card key={item.title} item={item}></ui-img-card>
+			</template>
+		</div>
+	</div>
+</template>
